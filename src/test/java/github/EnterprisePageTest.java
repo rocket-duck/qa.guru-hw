@@ -18,11 +18,8 @@ public class EnterprisePageTest {
     @Test
     void enterprisePageHaveHeadTest() {
         open("");
-        //$$("ul .d-lg-flex").get(2).hover();
         $(byTagAndText("button", "Solutions")).hover();
         $(byTagAndText("a", "Enterprise")).click();
         $("#hero-section-brand-heading").shouldHave(text("The AI-powered developer platform."));
-
-        //sleep(1000);
     }
 }
