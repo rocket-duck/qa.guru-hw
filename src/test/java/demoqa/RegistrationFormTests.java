@@ -1,6 +1,6 @@
-package demoQa;
+package demoqa;
 
-import demoQa.pages.RegistrationPage;
+import demoqa.pages.RegistrationPage;
 
 import org.junit.jupiter.api.Test;
 

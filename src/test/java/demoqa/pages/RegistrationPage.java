@@ -1,7 +1,7 @@
-package demoQa.pages;
+package demoqa.pages;
 
-import demoQa.pages.components.CalendarComponent;
-import demoQa.pages.components.ModalDialogComponent;
+import demoqa.pages.components.CalendarComponent;
+import demoqa.pages.components.ModalDialogComponent;
 
 import com.codeborne.selenide.SelenideElement;
 
