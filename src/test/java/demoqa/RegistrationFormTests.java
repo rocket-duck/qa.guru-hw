@@ -12,7 +12,7 @@ public class RegistrationFormTests extends TestBase {
                 .setFirstName("Pupa")
                 .setLastName("Lupa")
                 .setEmail("pupa@lupa.com")
-                .setGenter("Other")
+                .setGender("Other")
                 .setUserNumber("8005553535")
                 .setBirthDate("3", "January", "1900")
                 .setSubjects("Math")
@@ -42,7 +42,7 @@ public class RegistrationFormTests extends TestBase {
         registrationPage.openPage()
                 .setFirstName("Pupa")
                 .setLastName("Lupa")
-                .setGenter("Other")
+                .setGender("Other")
                 .setUserNumber("8005553535")
                 .setBirthDate("1", "March", "2024")
                 .submitForm();

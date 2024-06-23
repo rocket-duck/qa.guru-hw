@@ -12,7 +12,7 @@ public class RegistrationPage {
     private final SelenideElement firstNameLocator = $("#firstName"),
             lastNameLocator = $("#lastName"),
             emailLocator = $("#userEmail"),
-            genterWrapperLocator = $("#genterWrapper"),
+            genderLocator = $("#genterWrapper"),
             userNumberLocator = $("#userNumber"),
             dateOfBirthLocator = $("#dateOfBirthInput"),
             subjectsLocator = $("#subjectsInput"),
@@ -53,8 +53,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setGenter(String genter) {
-        genterWrapperLocator.$(byText(genter)).click();
+    public RegistrationPage setGender(String genter) {
+        genderLocator.$(byText(genter)).click();
 
         return this;
     }
