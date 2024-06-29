@@ -3,14 +3,16 @@ package demoqa.utils;
 import com.github.javafaker.Faker;
 import java.util.Locale;
 
-import static demoqa.utils.RandomUtils.*;
+import static demoqa.utils.RandomDate.*;
 
 public class TestData {
+    private final Faker faker = new Faker(new Locale("pl"));
+
     public String firstName = getFirstName(),
         lastName = getLastName(),
         email = getEmail(),
         gender = getGender(),
-        phone = getPhone(),
+        phone = getPhone(10),
         day = getDay(),
         month = getMonth(),
         year = getYear(),
@@ -21,8 +23,6 @@ public class TestData {
         picture = getPicture(),
         state = getState(),
         city = getCity(state);
-
-    private static final Faker faker = new Faker(new Locale("pl"));
 
     private String getFirstName() {
         return faker.name().firstName();
@@ -39,12 +39,10 @@ public class TestData {
     private String getGender() {
         String[] genders = {"Male", "Female", "Other"};
 
-        return genders[getRandomInt(genders.length)];
+        return faker.options().option(genders);
     }
 
-    private String getPhone() {
-        int phoneLength = 10;
-
+    private String getPhone(int phoneLength) {
         return faker.phoneNumber().subscriberNumber(phoneLength);
     }
 
@@ -58,7 +56,7 @@ public class TestData {
                 "July", "August", "September",
                 "October", "November", "December"};
 
-        return monthNames[Integer.parseInt(getRandomDate()[1]) - 1];
+        return monthNames[Integer.parseInt(getRandomDate()[1]) + 1];
     }
 
     private String getYear() {
@@ -77,19 +75,19 @@ public class TestData {
                 "Hindi", "Civics"
         };
 
-        return subjects[getRandomInt(subjects.length)];
+        return faker.options().option(subjects);
     }
 
     private String getHobbies() {
         String[] hobbies = {"Sports", "Reading", "Music"};
 
-        return hobbies[getRandomInt(hobbies.length)];
+        return faker.options().option(hobbies);
     }
 
     private String getPicture() {
         String[] pictures = {"SCR-10.png", "SCR-20.png", "SCR-30.png", "SCR-40.png"};
 
-        return pictures[getRandomInt(pictures.length)];
+        return faker.options().option(pictures);
     }
 
     private String getAddress() {
@@ -99,7 +97,7 @@ public class TestData {
     private String getState() {
         String[] states = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
 
-        return states[getRandomInt(states.length)];
+        return faker.options().option(states);
     }
 
     private String getCity(String state) {
@@ -109,10 +107,10 @@ public class TestData {
         String[] rajasthanCities = {"Jaipur", "Jaiselmer"};
 
         return switch (state) {
-            case ("NCR") -> ncrCities[getRandomInt(ncrCities.length)];
-            case ("Uttar Pradesh") -> uttarPradeshCities[getRandomInt(uttarPradeshCities.length)];
-            case ("Haryana") -> haryanaCities[getRandomInt(haryanaCities.length)];
-            case ("Rajasthan") -> rajasthanCities[getRandomInt(rajasthanCities.length)];
+            case ("NCR") -> faker.options().option(ncrCities);
+            case ("Uttar Pradesh") -> faker.options().option(uttarPradeshCities);
+            case ("Haryana") -> faker.options().option(haryanaCities);
+            case ("Rajasthan") -> faker.options().option(rajasthanCities);
             default -> throw new IllegalStateException("Unexpected value: " + state);
         };
     }
