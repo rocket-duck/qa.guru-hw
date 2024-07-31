@@ -2,57 +2,64 @@ package demoqa;
 
 import demoqa.pages.RegistrationPage;
 
+import demoqa.utils.TestData;
 import org.junit.jupiter.api.Test;
 
 public class RegistrationFormTests extends TestBase {
     @Test
     void successSubmitWholeFormTest() {
         RegistrationPage registrationPage = new RegistrationPage();
+        TestData data = new TestData();
+
         registrationPage.openPage()
-                .setFirstName("Pupa")
-                .setLastName("Lupa")
-                .setEmail("pupa@lupa.com")
-                .setGender("Other")
-                .setUserNumber("8005553535")
-                .setBirthDate("3", "January", "1900")
-                .setSubjects("Math")
-                .setHobbies("Reading")
-                .uploadFile("SCR-20.png")
-                .setCurrentAddress("Lupa's street")
-                .setState("Rajasthan")
-                .setCity("Jaipur")
+                .setFirstName(data.firstName)
+                .setLastName(data.lastName)
+                .setEmail(data.email)
+                .setGender(data.gender)
+                .setUserNumber(data.phone)
+                .setBirthDate(data.day, data.month, data.year)
+                .setSubjects(data.subject)
+                .setHobbies(data.hobbie)
+                .uploadFile(data.picture)
+                .setCurrentAddress(data.address)
+                .setState(data.state)
+                .setCity(data.city)
                 .submitForm();
 
         registrationPage.checkModalTableExists();
         registrationPage.checkModalTableHeader("Thanks for submitting the form");
-        registrationPage.checkModalTableResult("Student Name", "Pupa Lupa")
-                .checkModalTableResult("Student Email", "pupa@lupa.com")
-                .checkModalTableResult("Gender", "Other")
-                .checkModalTableResult("Mobile", "8005553535")
-                .checkModalTableResult("Date of Birth", "03 January,1900")
-                .checkModalTableResult("Subjects", "Math")
-                .checkModalTableResult("Hobbies", "Reading")
-                .checkModalTableResult("Picture", "SCR-20.png")
-                .checkModalTableResult("State and City", "Rajasthan Jaipur");
+        registrationPage.checkModalTableResult("Student Name", data.firstName + " " + data.lastName)
+                .checkModalTableResult("Student Email", data.email)
+                .checkModalTableResult("Gender", data.gender)
+                .checkModalTableResult("Mobile", data.phone)
+                .checkModalTableResult("Date of Birth", data.formattedDate)
+                .checkModalTableResult("Subjects", data.subject)
+                .checkModalTableResult("Hobbies", data.hobbie)
+                .checkModalTableResult("Picture", data.picture)
+                .checkModalTableResult("Address", data.address)
+                .checkModalTableResult("State and City", data.state + " " + data.city);
     }
 
     @Test
     void successSubmitShortFormTest() {
         RegistrationPage registrationPage = new RegistrationPage();
+        TestData data = new TestData();
+
         registrationPage.openPage()
-                .setFirstName("Pupa")
-                .setLastName("Lupa")
-                .setGender("Other")
-                .setUserNumber("8005553535")
-                .setBirthDate("1", "March", "2024")
+                .setFirstName(data.firstName)
+                .setLastName(data.lastName)
+                .setGender(data.gender)
+                .setUserNumber(data.phone)
+                .setBirthDate(data.day, data.month, data.year)
                 .submitForm();
 
+        registrationPage.checkModalTableExists();
         registrationPage.checkModalTableHeader("Thanks for submitting the form");
-        registrationPage.checkModalTableResult("Student Name", "Pupa Lupa")
+        registrationPage.checkModalTableResult("Student Name", data.firstName + " " + data.lastName)
                 .checkModalTableResult("Student Email", " ")
-                .checkModalTableResult("Gender", "Other")
-                .checkModalTableResult("Mobile", "8005553535")
-                .checkModalTableResult("Date of Birth", "01 March,2024")
+                .checkModalTableResult("Gender", data.gender)
+                .checkModalTableResult("Mobile", data.phone)
+                .checkModalTableResult("Date of Birth", data.formattedDate)
                 .checkModalTableResult("Subjects", " ")
                 .checkModalTableResult("Hobbies", " ")
                 .checkModalTableResult("Picture", " ")
